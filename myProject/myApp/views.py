@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate,login,logout
 from myApp.forms import *
 from django.contrib import messages
 from django.db.models import Q
+from notifications.signals import notify
 
 # Create your views here.
 
@@ -59,6 +60,7 @@ def blogPage(request):
             form2=form.save(commit=False)
             form2.user=request.user
             form2.save()
+            notify.send(sender=request.user , recipient = request.user , verb = "Create a blog" , action_object =form2 )
             return redirect("blogPage")
     else:
         form=blogForm()
@@ -72,7 +74,7 @@ def viewblog(request):
 
 
 def viewblogDeletePage(request, id):
-    BlogModel.objects.filter(id=id).delete()
+    BlogModel.objects.get(id=id).delete()
     
     messages.success(request, 'viewblog Delete Successfully!')
 
@@ -132,4 +134,10 @@ def updateProfile(request):
         else:
             form=ReaderModelForm(instance=request.user)
     return render(request,"updateprofile.html", {'form': form})
+
+def notificationPage(request):
+    notifications = 0
+    notifications  = request.user.notifications.all()
+    
+    return render(request, "notificationPage.html", {'notifications':notifications})
     

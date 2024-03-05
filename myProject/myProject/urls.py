@@ -1,8 +1,9 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path , include
 from myApp.views import *
 from django.conf import settings
 from django.conf.urls.static import static
+import notifications.urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -17,6 +18,8 @@ urlpatterns = [
     path('search_results/', search_results, name="search_results"),
     path('profilePage/', profilePage, name="profilePage"),
     path('updateProfile/', updateProfile, name="updateProfile"),
+    path('notificationPage/', notificationPage, name="notificationPage"),
+    path('notifications/', include(notifications.urls, namespace='notifications')),
 
 
 

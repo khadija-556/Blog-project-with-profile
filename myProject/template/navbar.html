@@ -8,11 +8,11 @@
     
     
     <li><a href="{% url 'logoutPage' %}">logout</a></li>
+    <li><a href="{% url 'notificationPage' %}">Notification</a></li>
 
     <li class="search">
       <form class="search-form" method="get" action="{% url 'search_results' %}">
           <input type="text" name="query" placeholder="Search...">
-          <button type="submit"><i class="fa fa-search"></i></button>
           <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
       

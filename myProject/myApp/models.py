@@ -16,6 +16,9 @@ class BlogModel(models.Model):
     blog_title=models.CharField(max_length = 100, null=True)
     blog_describtion=models.TextField(max_length = 300, null=True)
     Image=models.ImageField(upload_to="media/blog_pic",null=True)
+    
+    def __str__(self):
+        return self.blog_title
    
 class writterProfile(models.Model):
     user = models.OneToOneField(Custom_user,null=True, on_delete = models.CASCADE, related_name='reader')
