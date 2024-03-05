@@ -1,0 +1,91 @@
+{% extends 'home.html' %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .card {
+            width: 300px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card-header {
+            background-color: #321538;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-body p {
+            margin: 0;
+            padding: 5px 0;
+        }
+    </style>
+    <title>blog Page</title>
+</head>
+<body>
+    <form action="" method="POST">
+        <div class="container">
+    
+            {% for i in task %}
+            <div class="card">
+                <div class="card-header">{{i.blog_title}}</div>
+                <div class="card-body">
+                    <p><strong>blog_describtion Name :</strong> {{i.blog_describtion}}</p>
+                    <img src="/{{i.Image}}" alt="{{i.Image}}"height="200px" width="300px">
+                    
+                    
+                    {% if user.user_type == "writter" %}
+                    <a href="{% url 'editBlog' i.id %}">Edit </a> <br>
+                    <a href="{% url 'viewblogDeletePage' i.id %}">Delete </a>
+                    {% endif %}
+        
+                </div>
+            </div>
+            {% endfor %}
+        
+        </div>
+        
+
+
+    </form>
+
+
+</body>
+</html>
+
+
+{% endblock %}

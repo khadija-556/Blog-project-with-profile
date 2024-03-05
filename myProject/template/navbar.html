@@ -1,0 +1,19 @@
+<ul>
+  
+
+    <li><a class="active" href="#home">Home</a></li>
+    <li><a href="{% url 'blogPage' %}">blogPage</a></li>
+    <li><a href="{% url 'viewblog' %}">viewblog</a></li>
+    <li><a href="{% url 'profilePage' %}">profile</a></li>
+    
+    
+    <li><a href="{% url 'logoutPage' %}">logout</a></li>
+
+    <li class="search">
+      <form class="search-form" method="get" action="{% url 'search_results' %}">
+          <input type="text" name="query" placeholder="Search...">
+          <button type="submit"><i class="fa fa-search"></i></button>
+          <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+      
+  </ul>
